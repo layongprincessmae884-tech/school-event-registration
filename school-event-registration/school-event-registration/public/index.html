@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>School Event Registration System — RSU Cajidiocan Campus</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ======= PUBLIC HEADER ======= -->
+  <header class="site-header" id="publicHeader">
+    <div class="header-inner">
+      <a class="brand" href="#home">
+        <span class="logo-badge">RSU</span>
+        <span>
+          <strong>ROMBLON STATE UNIVERSITY</strong>
+          <small>Cajidiocan Campus</small>
+        </span>
+      </a>
+      <nav class="top-nav">
+        <a href="#home" data-nav="home">Home</a>
+        <a href="#events" data-nav="events">Events</a>
+        <a href="#home" data-nav="about">About</a>
+        <button class="btn btn-primary btn-sm" id="headerLoginBtn">Login</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ======= VIEW: HOME (Wireframe 1) ======= -->
+  <section id="view-home" class="view">
+    <div class="hero">
+      <div class="hero-text">
+        <h1>School Event<br />Registration System</h1>
+        <h2>of RSU – Cajidiocan Campus</h2>
+        <p>Join. Register. Be Part of Our Events!</p>
+        <a href="#events" class="btn btn-primary">View Events →</a>
+      </div>
+    </div>
+    <div class="feature-row">
+      <div class="feature-card">
+        <div class="feature-icon">📅</div>
+        <h3>Browse Events</h3>
+        <p>Check upcoming school events.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✏️</div>
+        <h3>Register Easily</h3>
+        <p>Sign up in just a few clicks.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔔</div>
+        <h3>Get Updates</h3>
+        <p>Stay informed about events.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= VIEW: LOGIN (Wireframe 2) ======= -->
+  <section id="view-login" class="view auth-view">
+    <div class="auth-card">
+      <h2>Login</h2>
+      <p class="muted">Access your account</p>
+      <div id="loginAlert"></div>
+      <form id="loginForm">
+        <div class="input-group">
+          <span class="input-icon">👤</span>
+          <input type="text" id="loginIdentifier" placeholder="Email or Student ID" required />
+        </div>
+        <div class="input-group">
+          <span class="input-icon">🔒</span>
+          <input type="password" id="loginPassword" placeholder="Password" required />
+        </div>
+        <button class="btn btn-primary btn-block" type="submit">Login</button>
+      </form>
+      <div class="divider">OR</div>
+      <p class="muted">Don't have an account? <a href="register.html">Register here</a></p>
+    </div>
+  </section>
+
+  <!-- ======= APP SHELL: Dashboard / My Registrations / Events / Details (Wireframes 4-6) ======= -->
+  <div id="appShell" class="app-shell">
+    <aside class="sidebar">
+      <div class="side-brand">
+        <span class="logo-badge">RSU</span>
+        <div>
+          <strong>ROMBLON STATE UNIVERSITY</strong>
+          <small>Cajidiocan Campus</small>
+        </div>
+      </div>
+      <nav class="side-nav">
+        <a href="#dashboard" data-side="dashboard">🏠&nbsp; Dashboard</a>
+        <a href="#my-registrations" data-side="my-registrations">📋&nbsp; My Registrations</a>
+        <a href="#events" data-side="events">📅&nbsp; Events</a>
+        <a href="#dashboard" data-side="profile">👤&nbsp; Profile</a>
+        <a href="#" id="logoutLink">↪&nbsp; Logout</a>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <!-- Dashboard -->
+      <section id="view-dashboard" class="view">
+        <h2 id="welcomeTitle">Welcome, Student!</h2>
+        <p class="muted">Explore and register for upcoming events.</p>
+        <div class="stat-row">
+          <div class="stat-card">
+            <div class="stat-icon">📅</div>
+            <span>Upcoming Events</span>
+            <strong id="statEvents">0</strong>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">✅</div>
+            <span>My Registrations</span>
+            <strong id="statRegs">0</strong>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">🔔</div>
+            <span>Notifications</span>
+            <strong>0</strong>
+          </div>
+        </div>
+        <div class="section-head">
+          <h3>Upcoming Events</h3>
+          <a href="#events" class="link">View All →</a>
+        </div>
+        <div id="dashEvents" class="event-list"></div>
+      </section>
+
+      <!-- My Registrations -->
+      <section id="view-my-registrations" class="view">
+        <h2>My Registrations</h2>
+        <p class="muted">Events you have signed up for.</p>
+        <br />
+        <div id="myRegsList" class="event-list"></div>
+      </section>
+
+      <!-- All Events -->
+      <section id="view-events" class="view">
+        <div class="section-head">
+          <h2>All Events</h2>
+          <div class="input-group search-group">
+            <span class="input-icon">🔍</span>
+            <input type="text" id="eventSearch" placeholder="Search events..." />
+          </div>
+        </div>
+        <div id="eventGrid" class="event-grid"></div>
+      </section>
+
+      <!-- Event Details / Registration -->
+      <section id="view-event" class="view">
+        <a href="#events" class="link">← Back to Events</a>
+        <div id="eventDetail" class="detail-card"></div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>

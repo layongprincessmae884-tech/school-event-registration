@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account — RSU Event Registration</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">
+        <span class="logo-badge">RSU</span>
+        <span>
+          <strong>ROMBLON STATE UNIVERSITY</strong>
+          <small>Cajidiocan Campus</small>
+        </span>
+      </a>
+      <nav class="top-nav">
+        <a href="index.html">Home</a>
+        <a href="index.html#login">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="auth-view">
+    <div class="auth-card">
+      <h2>Create Account</h2>
+      <p class="muted">Join the event registration system</p>
+      <div id="regAlert"></div>
+      <form id="registerForm">
+        <div class="input-group">
+          <span class="input-icon">👤</span>
+          <input type="text" id="fullName" placeholder="Full Name" required />
+        </div>
+        <div class="input-group">
+          <span class="input-icon">🎓</span>
+          <input type="text" id="studentId" placeholder="Student ID" required />
+        </div>
+        <div class="input-group">
+          <span class="input-icon">✉️</span>
+          <input type="email" id="email" placeholder="Email Address" required />
+        </div>
+        <div class="input-group">
+          <span class="input-icon">🔒</span>
+          <input type="password" id="password" placeholder="Password" required minlength="6" />
+        </div>
+        <button class="btn btn-primary btn-block" type="submit">Register</button>
+      </form>
+      <br />
+      <p class="muted">Already have an account? <a href="index.html#login">Login here</a></p>
+    </div>
+  </section>
+
+  <script>
+    document.getElementById('registerForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const alertBox = document.getElementById('regAlert');
+      try {
+        const res = await fetch('/api/auth/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            fullName: document.getElementById('fullName').value.trim(),
+            studentId: document.getElementById('studentId').value.trim(),
+            email: document.getElementById('email').value.trim(),
+            password: document.getElementById('password').value
+          })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.message || 'Registration failed');
+        alertBox.innerHTML = '<div class="alert success">Account created! Redirecting to login…</div>';
+        setTimeout(() => (location.href = 'index.html#login'), 1200);
+      } catch (err) {
+        alertBox.innerHTML = '<div class="alert error">' + err.message + '</div>';
+      }
+    });
+  </script>
+</body>
+</html>

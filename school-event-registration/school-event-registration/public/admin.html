@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel — RSU Event Registration</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="adminApp" class="app-shell active-flex">
+    <aside class="sidebar">
+      <div class="side-brand">
+        <span class="logo-badge">RSU</span>
+        <div>
+          <strong>ROMBLON STATE UNIVERSITY</strong>
+          <small>Cajidiocan Campus</small>
+        </div>
+      </div>
+      <nav class="side-nav">
+        <a href="#" data-admin="dashboard" class="active">🏠&nbsp; Dashboard</a>
+        <a href="#" data-admin="events">📋&nbsp; Manage Events</a>
+        <a href="#" data-admin="students">👥&nbsp; Registered Students</a>
+        <a href="#" data-admin="reports">📊&nbsp; Reports</a>
+        <a href="#" id="logoutLink">↪&nbsp; Logout</a>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <!-- Admin Dashboard -->
+      <section id="admin-dashboard" class="view active">
+        <h2>Admin Dashboard</h2>
+        <p class="muted">Overview of the event registration system.</p>
+        <div class="stat-row">
+          <div class="stat-card">
+            <div class="stat-icon">📅</div>
+            <span>Total Events</span>
+            <strong id="aStatEvents">0</strong>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">✅</div>
+            <span>Total Registrations</span>
+            <strong id="aStatRegs">0</strong>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">👥</div>
+            <span>Registered Students</span>
+            <strong id="aStatStudents">0</strong>
+          </div>
+        </div>
+      </section>
+
+      <!-- Manage Events -->
+      <section id="admin-events" class="view">
+        <div class="section-head">
+          <h2>Manage Events</h2>
+          <button class="btn btn-primary" id="addEventBtn">+ Add Event</button>
+        </div>
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID</th><th>Event Name</th><th>Date</th><th>Venue</th><th>Status</th><th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="eventsTable"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Registered Students -->
+      <section id="admin-students" class="view">
+        <h2>Registered Students</h2>
+        <p class="muted">Students who registered for events.</p>
+        <br />
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Student Name</th><th>Student ID</th><th>Email</th><th>Event</th><th>Date Registered</th>
+              </tr>
+            </thead>
+            <tbody id="studentsTable"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Reports -->
+      <section id="admin-reports" class="view">
+        <h2>Reports</h2>
+        <p class="muted">Registration count per event.</p>
+        <br />
+        <div id="reportsBody"></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Add/Edit Event Modal -->
+  <div id="eventModal" class="modal">
+    <div class="modal-card">
+      <h3 id="modalTitle">Add Event</h3>
+      <form id="eventForm">
+        <input type="hidden" id="evId" />
+        <label>Event Name
+          <input type="text" id="evName" required />
+        </label>
+        <label>Date
+          <input type="date" id="evDate" required />
+        </label>
+        <label>Venue
+          <input type="text" id="evVenue" required />
+        </label>
+        <label>Description
+          <textarea id="evDesc" rows="3"></textarea>
+        </label>
+        <label>Status
+          <select id="evStatus">
+            <option>Active</option>
+            <option>Inactive</option>
+          </select>
+        </label>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-light" id="modalCancel">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
